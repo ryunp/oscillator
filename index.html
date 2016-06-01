@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sound</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+  <div id="app">
+    <div id="row_container">
+      <section class="row">
+        <h1 id="header">Spectrum Analyser</h1>
+      </section>
+      <section class="row">
+        <div id="analyser_container">
+          <canvas id="analyser_canvas" width="600px" height="100px"></canvas>
+        </div>
+      </section>
+      <section class="row" id="params">
+        <div class="container" id="type_container">
+          <div class="param_label">Wave Type: </div>
+          <select class="param_value" id="type_dropdown"></select>
+        </div>
+        <div class="container" id="type_container">
+          <div class="param_label">Domain: </div>
+          <select class="param_value" id="display_dropdown"></select>
+        </div>
+        <div class="container" id="frequency_container">
+          <div class="param_label">Frequency (Hz): </div>
+          <input type="number" class="param_value" id="freq_value" value="3000" min="20" max="18000">
+          <div class="slider_container" id="freq_slider_container">
+            <input type="range" class="param_slider" id="freq_slider" value="3000" min="20" max="18000">
+            <div class="axis_label left" id="min_freq">20</div>
+            <div class="axis_label right" id="max_freq">18000</div>
+          </div>
+        </div>
+        <div class="container" id="gain_container">
+          <div class="param_label">Gain: </div>
+          <input type="number" class="param_value" id="gain_value" step="0.01" value="0.2" min="0" max="1">
+          <div class="slider_container" id="gain_slider_container">
+            <input type="range" class="param_slider" id="gain_slider" step="0.01" value="0.2" min="0" max="1">
+            <div class="axis_label left" id="min_gain">0</div>
+            <div class="axis_label right" id="max_gain">1</div>
+          </div>
+        </div>
+      </section>
+      <section class="row" id="controls">
+        <div id="time_container">
+          <button id="start">Start</button>
+          <button id="stop">Stop</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+
+</body>
+</html>
