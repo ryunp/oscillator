@@ -1,7 +1,7 @@
 window.onload = init;
 
 /*
- * Global vars :(
+ * Global vars
  */
 
 var running = 0,
@@ -32,11 +32,11 @@ var running = 0,
 	hRaf,
 	canvasCtx,
 	bgHsl = [50,50,05],
-	drawFnList = ['bargraph', 'oscilliscope'],
+	drawFnList = ['frequency', 'time'],
 	drawFn = drawFnList[0];
 
 /*
- * 'Public' functions
+ * APIish functions
  */
 
 function init() {
@@ -155,7 +155,7 @@ function stop() {
 
 
 /*
- * 'Private' functions
+ * Core functions
  */
 
 function setOscType(type) {
@@ -247,19 +247,18 @@ function visualize() {
 
 		// Setup resolutions
 		switch (drawFn) {
-			case 'bargraph':
-				drawFn = draw_bargraph;
+			case 'frequency':
+				drawFn = draw_frequency;
 				analyser.fftSize = 256;
-				bufferLength = analyser.frequencyBinCount;
-				dataArray = new Uint8Array(bufferLength);
 				break;
-			case 'oscilliscope':
-				drawFn = draw_oscilliscope;
+			case 'time':
+				drawFn = draw_time;
 				analyser.fftSize = 1024;
-				bufferLength = analyser.frequencyBinCount;
-				dataArray = new Uint8Array(bufferLength);
 				break;
 		}
+		
+		bufferLength = analyser.frequencyBinCount;
+		dataArray = new Uint8Array(bufferLength);
 
 		canvasCtx.clearRect(0, 0, width, height);
 	}
@@ -272,7 +271,7 @@ function visualize() {
 			hRaf = requestAnimationFrame(drawLoop);
 	}
 
-	function draw_bargraph() {
+	function draw_frequency() {
 
 		analyser.getByteFrequencyData(dataArray);
 
@@ -298,7 +297,7 @@ function visualize() {
 		}
 	}
 
-	function draw_oscilliscope() {
+	function draw_time() {
 
 		analyser.getByteTimeDomainData(dataArray);
 	
